@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roulette Royale</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-shell">
+      <header class="topbar">
+        <div class="brand">Roulette Royale</div>
+        <div class="stats">
+          <div class="stat">
+            <span class="label">Credits</span>
+            <span id="credits">200</span>
+          </div>
+          <div class="stat">
+            <span class="label">Current Bet</span>
+            <span id="bet-total">0</span>
+          </div>
+          <div class="stat">
+            <span class="label">Last Spin</span>
+            <span id="last-spin">-</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="wheel-panel">
+          <div class="wheel-wrap">
+            <div class="wheel" id="wheel"></div>
+            <div class="pointer"></div>
+          </div>
+        </section>
+
+        <section class="table-panel">
+          <div id="roulette-table" class="roulette-table"></div>
+
+          <div class="side-bets">
+            <button class="bet-type" data-bet="red">Red</button>
+            <button class="bet-type" data-bet="black">Black</button>
+            <button class="bet-type" data-bet="odd">Odd</button>
+            <button class="bet-type" data-bet="even">Even</button>
+            <button class="bet-type" data-bet="low">1-18</button>
+            <button class="bet-type" data-bet="high">19-36</button>
+            <button class="bet-type" data-bet="dozen1">1st 12</button>
+            <button class="bet-type" data-bet="dozen2">2nd 12</button>
+            <button class="bet-type" data-bet="dozen3">3rd 12</button>
+            <button class="bet-type" data-bet="column1">Column 1</button>
+            <button class="bet-type" data-bet="column2">Column 2</button>
+            <button class="bet-type" data-bet="column3">Column 3</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="controls">
+        <div class="chip-selector">
+          <button class="chip chip-active" data-chip="5">5</button>
+          <button class="chip" data-chip="10">10</button>
+          <button class="chip" data-chip="25">25</button>
+          <button class="chip" data-chip="50">50</button>
+        </div>
+
+        <div class="action-buttons">
+          <button id="spin-btn">Spin</button>
+          <button id="clear-btn" class="secondary">Clear Bets</button>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
