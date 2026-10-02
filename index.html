@@ -3,70 +3,100 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roulette Royale</title>
+    <title>Roulette Royale Pro</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="game-shell">
+    <div class="app-shell">
       <header class="topbar">
-        <div class="brand">Roulette Royale</div>
+        <div class="title-wrap">
+          <div class="title">Roulette Royale Pro</div>
+          <div class="subtitle">Single-zero roulette</div>
+        </div>
+
         <div class="stats">
-          <div class="stat">
-            <span class="label">Credits</span>
-            <span id="credits">200</span>
+          <div class="stat-card">
+            <span>Balance</span>
+            <strong id="balance">$100</strong>
           </div>
-          <div class="stat">
-            <span class="label">Current Bet</span>
-            <span id="bet-total">0</span>
+          <div class="stat-card">
+            <span>Profit</span>
+            <strong id="profit">$0</strong>
           </div>
-          <div class="stat">
-            <span class="label">Last Spin</span>
-            <span id="last-spin">-</span>
+          <div class="stat-card">
+            <span>Last Spin</span>
+            <strong id="last-spin">-</strong>
+          </div>
+          <div class="stat-card goal-card">
+            <span>Goal</span>
+            <strong>$1,000,000</strong>
           </div>
         </div>
       </header>
 
-      <main class="game-layout">
+      <main class="main-layout">
         <section class="wheel-panel">
-          <div class="wheel-wrap">
-            <div class="wheel" id="wheel"></div>
-            <div class="pointer"></div>
+          <div class="wheel-frame">
+            <canvas id="rouletteCanvas" width="520" height="520"></canvas>
           </div>
+          <button id="spinBtn" class="spin-btn">Spin the wheel</button>
         </section>
 
-        <section class="table-panel">
-          <div id="roulette-table" class="roulette-table"></div>
+        <section class="board-panel">
+          <div class="betting-sidebar">
+            <div class="chip-panel">
+              <h3>Chip amount</h3>
+              <div class="chip-buttons" id="chipButtons"></div>
+              <input id="customBet" type="number" min="1" placeholder="Custom bet" />
+              <p class="bet-help">Max bet: <strong id="maxBet">$0</strong></p>
+            </div>
 
-          <div class="side-bets">
-            <button class="bet-type" data-bet="red">Red</button>
-            <button class="bet-type" data-bet="black">Black</button>
-            <button class="bet-type" data-bet="odd">Odd</button>
-            <button class="bet-type" data-bet="even">Even</button>
-            <button class="bet-type" data-bet="low">1-18</button>
-            <button class="bet-type" data-bet="high">19-36</button>
-            <button class="bet-type" data-bet="dozen1">1st 12</button>
-            <button class="bet-type" data-bet="dozen2">2nd 12</button>
-            <button class="bet-type" data-bet="dozen3">3rd 12</button>
-            <button class="bet-type" data-bet="column1">Column 1</button>
-            <button class="bet-type" data-bet="column2">Column 2</button>
-            <button class="bet-type" data-bet="column3">Column 3</button>
+            <div class="bet-panel">
+              <h3>Outside bets</h3>
+              <div class="outside-bets">
+                <button class="bet-type" data-bet="red">Red</button>
+                <button class="bet-type" data-bet="black">Black</button>
+                <button class="bet-type" data-bet="odd">Odd</button>
+                <button class="bet-type" data-bet="even">Even</button>
+                <button class="bet-type" data-bet="low">1–18</button>
+                <button class="bet-type" data-bet="high">19–36</button>
+                <button class="bet-type" data-bet="dozen1">1st 12</button>
+                <button class="bet-type" data-bet="dozen2">2nd 12</button>
+                <button class="bet-type" data-bet="dozen3">3rd 12</button>
+                <button class="bet-type" data-bet="col1">Col 1</button>
+                <button class="bet-type" data-bet="col2">Col 2</button>
+                <button class="bet-type" data-bet="col3">Col 3</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="board-wrap">
+            <div class="roulette-board" id="rouletteBoard"></div>
+          </div>
+
+          <div class="bet-summary">
+            <h3>Current bets</h3>
+            <div id="betList" class="bet-list"></div>
+            <div class="total-row">
+              <span>Total bet</span>
+              <strong id="totalBet">$0</strong>
+            </div>
+            <div class="total-row">
+              <span>Potential win</span>
+              <strong id="potentialWin">$0</strong>
+            </div>
+            <button id="clearBetsBtn" class="secondary-btn">Clear bets</button>
           </div>
         </section>
       </main>
+    </div>
 
-      <footer class="controls">
-        <div class="chip-selector">
-          <button class="chip chip-active" data-chip="5">5</button>
-          <button class="chip" data-chip="10">10</button>
-          <button class="chip" data-chip="25">25</button>
-          <button class="chip" data-chip="50">50</button>
-        </div>
-
-        <div class="action-buttons">
-          <button id="spin-btn">Spin</button>
-          <button id="clear-btn" class="secondary">Clear Bets</button>
-        </div>
-      </footer>
+    <div id="gameOverModal" class="modal hidden">
+      <div class="modal-card">
+        <h2 id="modalTitle">Game over</h2>
+        <p id="modalText"></p>
+        <button id="restartBtn" class="restart-btn">Play again</button>
+      </div>
     </div>
 
     <script src="script.js"></script>
